@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>Maze of Apocrypha</title>
+<style type="text/css">
+canvas { border: 1px solid black; }
+</style>
+
+</head>
+<body onload="init();">
+	<canvas id="myCanvas" width="800" height="480"></canvas>
+	<p id="debugText">Debug Text Here</p>
+	<p>Controls:<br>Movement is WASD<br>Arrow keys rotate (will be mouse look!)</p>
+
+	<script src="scripts/threejs/Three.js" type="text/javascript"></script>	
+	<script src="scripts/threejs/Detector.js" type="text/javascript"></script>	
+	<script src="scripts/threejs/Stats.js" type="text/javascript"></script>	
+	<script src="scripts/threejs/RequestAnimationFrame.js" type="text/javascript"></script>	
+
+	<script src="scripts/map.js" type="text/javascript"></script>
+	<script src="scripts/levelgen.js" type="text/javascript"></script>
+	<script src="scripts/player.js" type="text/javascript"></script>
+	<script src="scripts/world.js" type="text/javascript"></script>
+	<script src="scripts/draw.js" type="text/javascript"></script>
+	<script src="scripts/main.js" type="text/javascript"></script>	
+
+	<script type="text/javascript">init();</script>
+</body>
+</html>

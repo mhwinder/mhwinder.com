@@ -1,0 +1,164 @@
+STAR HUNTER
+  Game System
+
+By Mike Winder for use with the Star Hunter campaign setting
+
+
+MAIN STATISTICS
+
+These are the stats that make up your characters most
+basic abilities. You should choose them carefully because
+you won't have many chances to change these around once
+the first episode has been filmed. Main stats are based 
+on one six sided die so they can go from one to six with
+the average Joe sitting on 3. Your character will have 14
+points to distribute.
+
+Stamina (t)
+
+    This stat represents the characters physical abilities.
+  If a character is tough, strong, or just works out a lot
+  than this stat should be high. Alternativly a sissy little
+  guy who spends his time in front of a computer should
+  have a low number here.
+    Stamina is used when you perform physical actions that 
+  are accomplished not with finesse but brute strength. 
+  Stamina is also the hit points in this game so as you take
+  laser blasts you start to get weaker, and eventually die.
+  Hopefully some book worms will invest in this stat for 
+  this reason.
+ 
+Senses (n)
+
+    Senses is a stat that shows how well your character pays
+  attention. A battle hardend soldier will have good senses
+  that keep him alert and ready for danger. On the other hand
+  a poker player can use his good senses to catch the tells of
+  the other player and make the winning bet.
+    Senses is used in all actions that have to do with noticing 
+  things. Senses is also what determines how well you dodge 
+  attacks. It is also the stat that determines when you get to 
+  take your actions in combat. Senses is also another kind of 
+  hit point in this game. Just try not to get beaten senseless.
+
+Skill (l)
+
+    Skill is a stat that shows what a character can do if he 
+  takes the time to do it. If a character can aim and shoot a 
+  high powered assault rifle into a large crowd and only kill 
+  the bad guys, he's got skill.
+    Skill has most of the combat related actions linked to it 
+  so I will go ahead and say a lot of people will want to max 
+  it out. Skill also determines how many actions you make in a 
+  round, which is always important.
+
+Smarts (m)
+
+    What is there to say about smarts? Its how well you think.
+  A smart character won't have to be standing in the front taking 
+  the laser blasts. He will be the guy who is standing behind that 
+  guy telling the Star Hunter where to shoot the huge gun mounted 
+  underneath.
+    Smarts is the stat that has the science and computer stuff.
+  You can bet that the people at the top have more smarts than the 
+  people at the bottom.
+
+
+
+SUB STATISTICS
+
+These stats all fall underneath one of the main stats. They are 
+there to represent what specialized training you might have in any
+particular area. These are able to be increased during the game as
+your character gets better at what he does. 
+
+<<< I still don't know what kinds of numbers these stats will have, >>>
+<<< but I plan on keeping them low  >>>
+
+  Stamina
+
+Climb
+    Get up to high places, and other such activities.
+Endurance
+    Running for a long time, and more importantly, keeping 
+    on your feet after taking a hit. This is sort of an analogue 
+    to 'fortitude saves'
+Fisticuffs (t)
+    There are two Fisticuffs sub-stats, this is the burtal one.
+    Fisticuffs does damage to stamina, so you can kill people 
+    with it. 
+Lifting
+    Want to move something? Lets hope you've invested here.
+Sprint
+    Not haw long you can run, thats endurance, but how fast you can.
+Swim
+    Would you even want to get in the strange alien waters you'll find?
+    If you've got the balls for it, this stat is for you.
+
+  Senses
+
+Awareness
+    Whats going on? If you have this stat you'll know. This is pretty 
+    much, spot and listen.
+Empathy (human/alien race/...)
+    This stat represents your ability to tell what other people are 
+    thinking. If you care, then take this stat.
+Investigation
+    Hey gum shoe, did you notice the connection between the mysterious 
+    explosion and the slimy foot prints?
+Reality
+    I put this in so I could tell people to make 'reality checks' it 
+    will work well for a common sense skill.
+Reflex
+    React to people shooting at you? Sound important? This is going 
+    to work kinda like AC.
+
+  Skill
+
+First Aid
+    Burns, cuts, broken bones, anything that can be fixed without the 
+    use of drugs or time. Afterall you'll probably be using this in 
+    a firefight.
+Fisticuffs (l)
+    Skilled fisticuffery will take your opponent down and leave him 
+    alive for questioning later. There will be ways to modify this, 
+    but this stat does only sense damage.
+Fix/Craft/Make
+    I havent decided what to call this one, but it will be an important 
+    one. Making stuff and fixing things is what McGuyver did after all.
+Marksmanship (pistol/rifle/other)
+    This is 3 different stats. Different sizes of weapons need to be 
+    shot different ways. The other pretains to things like 
+    Flamethrowers granade launchers and rocket launchers.
+Melee
+    I really hope nobody takes this stat. Its the 26th 
+    century for crying out loud. But for the sake of 
+    completeness here it is. This stat will also work for 
+    throwing stuff (like granades).
+Perform
+    This skill is taken if you want to play an insturment or what not.
+Pilot (shuttle/star hunter)
+    Driving is now piloting now that everything can fly. The 
+    shuttle part of this stat covers hover cars on earth so most 
+    characters will probably have some level of proficiency.
+    
+  Smarts
+
+Computers
+    There will be a lot of these on a spaceship, you might want 
+    to know how to use them.
+Engineering
+    Solving problems that involve building and designing things.
+Linguistics
+    Learning and understanding other languages. Aliens... hint hint
+Medicine
+    Knowing how the human body works, and how to fix it when it 
+    doesn't. This skill assumes you have all the equipment and 
+    materials you might want.
+Science (physics/biology/geology/...)
+    Science will be important in this game, at least it will be 
+    if you are one the the science officers on the Star Hunter!
+Technology
+    This stat will work like computers only with things like 
+    robotic arms, gunning turrets, unmanned vehicals and the like. 
+    Subject to revision.

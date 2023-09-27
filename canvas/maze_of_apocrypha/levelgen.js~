@@ -1,0 +1,151 @@
+//This file holds the rules to generate the maze based on the progress
+//The functions are put in an array for easy use later
+//  (no giant if-then tree!)
+
+var progress = 0;
+var levelUpdate = new Array();
+
+levelUpdate[0] = levelRules00;
+levelUpdate[1] = levelRules01;
+levelUpdate[2] = levelRules02;
+levelUpdate[3] = levelRules03;
+levelUpdate[4] = levelRules04;
+levelUpdate[5] = levelRules05;
+
+
+
+
+function levelRules00()
+{
+
+	endlessMazeBehind();
+
+}
+
+function levelRules01()
+{
+}
+
+function levelRules02()
+{
+}
+
+function levelRules03()
+{
+}
+
+function levelRules04()
+{
+}
+
+function levelRules05()
+{
+}
+
+function endlessMazeBehind()
+{
+	//This block does the "behind the character" stuff for sections of endless maze
+	if ((facing > 45) && (facing <= 135))
+	{
+		if(inTunnelX)
+		{
+			for(i=(midTile+1);i<mapSize;i++)
+			{
+				for(j=0;j<mapSize;j++)
+				{
+					map[i][j] = 0;
+				}
+			}
+			map[midTile+1][midTile] = 21;
+			map[midTile+2][midTile] = 21;
+			map[midTile+3][midTile] = 21;
+			map[midTile+4][midTile] = 21;
+			if(Math.floor((Math.random()*2))) map[midTile+4][midTile+1] = 22;
+			if(Math.floor((Math.random()*2))) map[midTile+4][midTile-1] = 22;
+		}
+	}
+	else if ((facing > 135) && (facing <= 225))
+	{
+		if(inTunnelY)
+		{
+			for(j=0;j<(midTile);j++)
+			{
+				for(i=0;i<mapSize;i++)
+				{
+					map[i][j] = 0;
+				}
+			}	
+			map[midTile][midTile-1] = 21;
+			map[midTile][midTile-2] = 21;
+			map[midTile][midTile-3] = 21;
+			map[midTile][midTile-4] = 21;
+			if(Math.floor((Math.random()*2))) map[midTile+1][midTile-4] = 22;
+			if(Math.floor((Math.random()*2))) map[midTile-1][midTile-4] = 22;
+		}
+	}
+	else if ((facing > 225) && (facing <= 315))
+	{
+		if(inTunnelX)
+		{
+			for(i=0;i<(midTile);i++)
+			{
+				for(j=0;j<mapSize;j++)
+				{
+					map[i][j] = 0;
+				}
+			}
+			map[midTile-1][midTile] = 21;
+			map[midTile-2][midTile] = 21;
+			map[midTile-3][midTile] = 21;
+			map[midTile-4][midTile] = 21;
+			if(Math.floor((Math.random()*2))) map[midTile-4][midTile+1] = 22;
+			if(Math.floor((Math.random()*2))) map[midTile-4][midTile-1] = 22;
+		}
+	}
+	else 
+	{
+		if(inTunnelY)
+		{
+			for(j=(midTile+1);j<(mapSize);j++)
+			{
+				for(i=0;i<mapSize;i++)
+				{
+					map[i][j] = 0;
+				}
+			}	
+			map[midTile][midTile+1] = 21;
+			map[midTile][midTile+2] = 21;
+			map[midTile][midTile+3] = 21;
+			map[midTile][midTile+4] = 21;
+			if(Math.floor((Math.random()*2))) map[midTile+1][midTile+4] = 22;
+			if(Math.floor((Math.random()*2))) map[midTile-1][midTile+4] = 22;
+		}
+	}
+}
+
+
+//Decides if you are in a space like		###
+function inTunnelX()			//	 @ 
+{					//	###
+	if	((map[midTile+1][midTile] > 20) && (map[midTile-1][midTile] > 20) && 
+		(map[midTile-1][midTile+1] < 20) && (map[midTile-1][midTile-1] < 20) && 
+		(map[midTile+1][midTile-1] < 20) && (map[midTile+1][midTile+1] < 20) && 
+		(map[midTile][midTile+1] < 20) && (map[midTile][midTile-1] < 20))
+	{return true;}
+	else
+	{return false;}
+}
+
+//Decides if your in a space like		# #
+function inTunnelY()			//	#@#
+{					//	# #
+/*	if	((map[midTile][midTile+1] > 20) && (map[midTile][midTile-1] > 20) &&
+		(map[midTile-1][midTile+1] < 20) && (map[midTile+1][midTile] < 20) &&
+		(map[midTile+1][midTile+1] < 20) && (map[midTile-1][midTile-1] < 20) &&
+		(map[midTile-1][midTile] < 20) && (map[midTile+1][midTile-1] < 20))
+*/
+	if ((map[midTile][midTile+1] > 20) && (map[midTile][midTile-1] > 20)) return true;
+	else
+	{return false;}
+}
+

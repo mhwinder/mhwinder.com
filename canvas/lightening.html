@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>Lightening</title>
+	<script type="text/javascript">
+
+	var ctx;
+	var canvas;
+
+	var xvar = 15;
+	var yvar = 25;
+
+	function init()
+	{
+		canvas = document.getElementById('myCanvas');
+		if (canvas.getContext)
+		{
+			ctx = canvas.getContext('2d');
+			setInterval(mainLoop,32);
+		}
+	}
+
+	function mainLoop()
+	{
+		ctx.globalCompositeOperation = 'destination-over';
+		ctx.clearRect(0,0,800,480); // clear canvas
+
+		var i;
+		for(i=0;i<5;i++)
+		{
+			drawSpark();			
+		}
+
+		drawChain(50,50,50,430,5,5);
+		drawChain(100,50,100,430,10,5);
+		drawChain(150,50,150,430,15,5);
+		drawChain(200,50,200,430,20,5);
+
+		drawChain(250,50,250,430,5,15);
+		drawChain(300,50,300,430,10,15);
+		drawChain(350,50,350,430,15,15);
+		drawChain(400,50,400,430,20,15);
+
+		drawChain(450,50,450,430,5,30);
+		drawChain(500,50,500,430,10,30);
+		drawChain(550,50,550,430,15,30);
+		drawChain(600,50,600,430,20,30);
+	}
+	
+	function drawSpark()
+	{
+		var i,x,y;
+		var steps = Math.floor(Math.random()*3)+5;
+
+		x=700+(Math.floor(Math.random()*2*xvar)-xvar)/4;
+		y=50;
+
+		ctx.beginPath();
+		ctx.moveTo(x,y)
+		for(i=0;i<steps;i++)
+		{
+			x += Math.floor(Math.random()*2*xvar)-xvar;
+			y += Math.floor(Math.random()*2*yvar)+10;
+			ctx.lineTo(x,y);
+		}
+		ctx.strokeStyle = "#ddf";
+		ctx.lineWidth   = 2;
+		ctx.stroke();
+	}
+
+	function drawChain(x1,y1,x2,y2,steps,chainvar)
+	{
+		var dx = (x2-x1)/steps;
+		var dy = (y2-y1)/steps;
+
+		var i;
+		ctx.beginPath();
+		ctx.moveTo(x1,y1)
+		for(i=1;i<(steps);i++)
+		{
+			var xtemp = x1+dx*i+Math.floor(Math.random()*2*chainvar)-chainvar;
+			var ytemp = y1+dy*i+Math.floor(Math.random()*2*chainvar)-chainvar;
+			ctx.lineTo(xtemp,ytemp);
+		}
+		ctx.lineTo(x2,y2);
+		ctx.strokeStyle = "#ddf";
+		ctx.lineWidth   = 2;
+		ctx.stroke();
+	}
+
+	</script>
+
+<style type="text/css">
+canvas { border: 1px solid black; background: black; }
+</style>
+
+</head>
+<body onload="init();">
+	<canvas id="myCanvas" width="800" height="480"></canvas>
+	<p id="output"></p>
+</body>
+</html>

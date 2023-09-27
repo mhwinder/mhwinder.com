@@ -1,0 +1,132 @@
+<html>
+<head>
+<title>Canvas Fun-Time</title>
+	<script type="text/javascript">
+
+	var ctx;
+	var canvas;
+
+	dotTotal = 100;
+	dotArray = [];
+	tempdotArray = [];
+	for(i=0;i<dotTotal;i++) {dotArray[i] = new Dot(0,0,0,0); tempdotArray[i] = new Dot(0,0,0,0);}
+
+	function init()
+	{
+		canvas = document.getElementById('myCanvas');
+		if (canvas.getContext)
+		{
+			ctx = canvas.getContext('2d');
+			setInterval(mainLoop,32);
+		}
+	}
+
+//MAIN LOOP
+	function mainLoop()
+	{
+		ctx.globalCompositeOperation = 'destination-over';
+		ctx.clearRect(0,0,800,480); // clear canvas
+
+		var i;
+		for(i=0;i<dotTotal;i++)
+		{
+			updateDot(dotArray[i],tempdotArray[i],i);
+			
+		}
+
+		dotArray = tempdotArray;
+
+		for(i=0;i<dotTotal;i++)
+		{
+			drawDot(dotArray[i]);
+		}	
+	}
+
+//Creates Dots: Modify dot distributions here.
+//spawn all dots in middle or all red dots type stuff)
+	function Dot(newX, newY, newType, newWeight) 
+	{
+		if(newX == 0) newX = Math.floor(Math.random()*800);
+		if(newY == 0) newY = Math.floor(Math.random()*480);
+		if(newType == 0) newType = Math.floor(Math.random()*3)+1;
+		if(newWeight == 0) newWeight = Math.floor(Math.random()*0)+1; //No variation in weight
+
+		this.x = newX;
+		this.y = newY;
+		this.type = newType;
+		this.weight = newWeight;
+	}
+
+
+//Update dot positions: Modify propertied of dots here.
+//green dots attract (and force of it)
+	function updateDot(thisDot,tempDot,number)
+	{
+		var i;
+		for(i=0;i<dotTotal;i++)
+		{
+			if(i != number) 
+			{
+				//All dots repel strongly at VERY close distance
+				tempdotArray[number] = repel(thisDot,dotArray[i],5,10);
+				//Dot 2 attracts Dot 2
+				if((thisDot.type == 2) && (dotArray[i].type == 2)) tempDot = repel(thisDot,dotArray[i],-0.25,200);
+				//Dot 1 repels all dots short range
+				if(thisDot.type == 1) tempDot = repel(thisDot,dotArray[i],1,100);
+				//Dot 3 repels Dot 2 weakly
+				if((thisDot.type == 2) && (dotArray[i].type == 3)) tempDot = repel(thisDot,dotArray[i],0.025,150);
+				
+			}
+		}
+		//var mouseDot = new Dot(mouse.clientX,mouse.clientY,0,1);
+		//if(thisDot.type == 3) repel(thisDot,mouseDot,-0.5,400);
+
+
+		//keep within the bounds
+		if(tempDot.x > 800) tempDot.x = 800;
+		else if(tempDot.x < 0) tempDot.x = 0;
+		if(tempDot.y > 480) tempDot.y = 480;
+		else if(tempDot.y < 0) tempDot.y = 0;
+	}
+
+	function repel(firstDot,secondDot,force, distance)
+	{
+		var tempDot = firstDot;
+
+		scale = ((firstDot.x-secondDot.x)*(firstDot.x-secondDot.x)+(firstDot.y-secondDot.y)*(firstDot.y-secondDot.y))/(distance*distance)
+
+		xscale = Math.abs(firstDot.x-secondDot.x)/distance;
+		yscale = Math.abs(firstDot.y-secondDot.y)/distance;
+		if(scale < 1)
+		{
+			if(firstDot.x > secondDot.x) tempDot.x += force/firstDot.weight;
+			else tempDot.x -= force/firstDot.weight;
+
+			if(firstDot.y > secondDot.y) tempDot.y += force/firstDot.weight;
+			else tempDot.y -= force/firstDot.weight;
+		}
+
+		return tempDot;
+	}
+
+	function drawDot(thisDot)
+	{
+		if(thisDot.type == 1) ctx.fillStyle = "rgb(255,0,0)";
+		else if(thisDot.type == 2) ctx.fillStyle = "rgb(0,130,0)";
+		else if(thisDot.type == 3) ctx.fillStyle = "rgb(0,0,255)";
+		else ctx.fillStyle = "rgb(100,0,200)";
+
+		ctx.fillRect (thisDot.x-5, thisDot.y-5, 10, 10);
+	}
+
+	</script>
+
+<style type="text/css">
+canvas { border: 1px solid black; }
+</style>
+
+</head>
+<body onload="init();">
+	<canvas id="myCanvas" width="800" height="480"></canvas>
+</body>
+</html>

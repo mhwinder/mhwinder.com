@@ -1,0 +1,95 @@
+STAR HUNTER
+  Game System
+
+By Mike Winder for use with the Star Hunter campaign setting
+
+
+COMBAT
+
+Combat in the Star Hunter game takes place in rounds. In 
+every round 6 seconds of game time occures.
+
+INITIATIVE
+
+At the beginning of a round of combat every character rolls 
+an awareness check. The characters take actions from the lowest 
+value to the highest, and any character with actions may 
+inturupt at any time to take an action. When the person with 
+the lowest value for initiative has taken all their actions 
+then the next lowest player takes his actions (if he has any). 
+If two or more players want to inturupt the same players action 
+then the player with the higher initiative gets priority. An 
+inturupted action never happens so the player with the lowest 
+initiative can keep declaring targets, then watch them duck 
+behind walls and choose another. 
+
+ACTIONS
+
+A player gets to make a number of actions per round equal to the 
+players skill stat. A player may not take more than 6 actions even 
+if the character has benefits that would allow the player to.
+
+   Attack
+      Attacking is done with a combat skill, the required dice roll 
+      will be specified by the skill and the target.
+   Evade
+      Evading attacks can be done with the Reflex skill, you get 
+      another reflex roll for every attack and can choose the 
+      better one.
+   Think
+      Thinking can give you various combat benefits, such as extra 
+      damage or better chance to hit. The difficulty of the think 
+      roll to get the benefit varies greatly from target to target 
+      and from the benefit you want.
+   Move
+      Your character can move 3 meters in one move action, to move 
+      more see Running
+   Manipulate
+      Opening doors, picking up weapons, using a computer console. 
+      These actions may take more than one acion depending on the task.
+   Aim
+      Aimed attacks have a lower penalty from range than unaimed shots. 
+      Once you are aimed at a target you can make as many attacks 
+      against that target as you want until you perform an action 
+      other than an attack.
+   Pull Yourself Together
+      A character can actively recover from sense damage with a roll.
+
+ATTACKS
+
+An attack is made by rolling the assosiated attack skill. The value 
+of the roll is then compaired to the reflex roll of the target with 
+an added penalty due to range and other modifiers. If the attack is 
+successful the player attacked must then attempt to endure the damage.
+
+DAMAGE
+
+If the player suffers a successful attack they are subject to an endurance 
+roll. The rolls difficulty is equal to the weapons modifier the amount 
+that the attacker passed the reflex roll and any other modifiers. If the 
+endureance check succeeds then the player takes no damage. If the check 
+fails then the player takes the damage.
+
+Weapons do either sense damage or stamina damage. If the attack was dealing 
+stamina damage another endurance check must be made to not suffer sense damage 
+in addition to stamina damage. The check is equal to the damage the weapon 
+dealt times five.
+
+DAMAGE EFFECTS
+
+A character who has taken stamina damage rolls their sub-stats with the new 
+damaged number. If at any time stamina is reduced to zero the character falls 
+unconcious and no longer participates in combat. If the character takes any 
+damage beyond that they are dead. Technology cannot bring you back from the dead.
+
+A character with sense damage rolls their sub stats with the new damaged number. 
+If at any time the characters sense is reduced to zero they fall unconsious and 
+will need to be tended by another player with first aid before they can come to 
+their senses again. A character cannot go below 0 senses.
+
+RUNNING
+
+A character can spend an action to begin running. They run as many meters as they 
+roll for a sprint check. Any actions taken after beginning to run suffer a penalty 
+but you can continue to perform actions while running. The sprint skill also takes 
+penalties while perfoming other actions while running.

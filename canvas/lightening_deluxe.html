@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Lightening Deluxe</title>
+	<script type="text/javascript">
+
+	var ctx;
+	var canvas;
+	var timer = 0;
+
+	var xvar = 15;
+	var yvar = 25;
+
+	function init()
+	{
+		canvas = document.getElementById('myCanvas');
+		if (canvas.getContext)
+		{
+			ctx = canvas.getContext('2d');
+			setInterval(mainLoop,32);
+		}
+	}
+
+	function mainLoop()
+	{
+		ctx.globalCompositeOperation = 'destination-over';
+		ctx.clearRect(0,0,800,480); // clear canvas
+
+		var dx1 = +50*Math.sin(3.14159/180*timer);
+		var dx2 = -50*Math.sin(3.14159/180*timer);
+		var dy1 = -50*Math.cos(3.14159/180*timer);
+		var dy2 = +50*Math.cos(3.14159/180*timer);
+
+		drawChain(50+dx1,50+dy1,50+dx2,50+dy2,20,5*Math.sin(3.14159/90*timer));
+		drawChain(150+dx1,50+dy1,150+dx2,50+dy2,20,5*Math.sin(3.14159/90*timer));
+		drawChain(50+dx1,150+dy1,50+dx2,150+dy2,20,5*Math.sin(3.14159/90*timer));
+		drawChain(150+dx1,150+dy1,150+dx2,150+dy2,20,5*Math.sin(3.14159/90*timer));
+
+		var wy1 = 240+100*Math.sin(3.14159/45*timer);
+		var wy2 = 240-100*Math.cos(3.14159/45*timer);
+		var wy1a = 240+100*Math.sin(3.14159/45*(timer+15));
+		var wy2a = 240-100*Math.cos(3.14159/45*(timer+15));
+
+		drawChain(400,wy1,700,wy2,25,10*Math.sin(3.14159/10*timer));
+		drawChain(400,wy1a,700,wy2a,25,10*Math.sin(3.14159/10*timer));
+
+		timer++;
+		if(timer>360) timer = 1;
+	}
+
+	function drawChain(x1,y1,x2,y2,steps,chainvar)
+	{
+		var dx = (x2-x1)/steps;
+		var dy = (y2-y1)/steps;
+
+		var i;
+		ctx.beginPath();
+		ctx.moveTo(x1,y1)
+		for(i=1;i<(steps);i++)
+		{
+			var xtemp = x1+dx*i+Math.floor(Math.random()*2*chainvar)-chainvar;
+			var ytemp = y1+dy*i+Math.floor(Math.random()*2*chainvar)-chainvar;
+			ctx.lineTo(xtemp,ytemp);
+		}
+		ctx.lineTo(x2,y2);
+		ctx.strokeStyle = "#ddf";
+		ctx.lineWidth   = 2;
+		ctx.stroke();
+	}
+
+	</script>
+
+<style type="text/css">
+canvas { border: 1px solid black; background: black; }
+</style>
+
+</head>
+<body onload="init();">
+	<canvas id="myCanvas" width="800" height="480"></canvas>
+	<p id="output"></p>
+</body>
+</html>

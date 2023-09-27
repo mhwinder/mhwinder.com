@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>He-Cone</title>
+	<script type="text/javascript">
+
+	var ctx;
+	var canvas;
+	var print_space;
+	var timer;
+	var counter;
+
+	dotTotal = 500;
+	dotArray = [];
+	for(i=0;i<dotTotal;i++) {dotArray[i] = new Dot(400,240,0,0);}
+
+	var sunx = 200;
+	var suny = 240;
+	var force_const = 500;
+
+
+	function init()
+	{
+		canvas = document.getElementById('myCanvas');
+		if (canvas.getContext)
+		{
+			ctx = canvas.getContext('2d');
+			setInterval(mainLoop,32);
+
+			timer = 0;
+			counter = 0;
+			spawn_wave();
+		}
+	}
+
+	function mainLoop()
+	{
+		ctx.globalCompositeOperation = 'destination-over';
+		ctx.clearRect(0,0,800,480); // clear canvas
+
+
+		ctx.fillStyle = "rgb(255,255,0)";
+		ctx.beginPath();
+   		ctx.arc(sunx, suny, 5, 0, 2 * Math.PI, false);
+		ctx.fill()
+
+		timer++;
+		if(timer == 10) spawn_wave();
+		document.getElementById('output').innerHTML = "timer: "+timer+"  counter: "+counter;
+
+		var i;
+		for(i=0;i<dotTotal;i++)
+		{
+			updateDot(dotArray[i]);
+			drawDot(dotArray[i]);	
+		}
+
+
+	}
+
+	function spawn_wave()
+	{
+		var i;
+		var wavesize = 30;
+		var spacing = 25;
+		for(i=0;i<(wavesize/2);i++)
+		{
+			dotArray[i+counter*wavesize].x = 0;
+			dotArray[i+counter*wavesize].y = spacing/2+ i*spacing +240;
+			dotArray[i+counter*wavesize].vx = 5;
+			dotArray[i+counter*wavesize].vy = 0;
+			dotArray[i+counter*wavesize].isLive = true;
+			dotArray[i+(wavesize/2)+counter*wavesize].x = 0;
+			dotArray[i+(wavesize/2)+counter*wavesize].y = -spacing/2- i*spacing +240;
+			dotArray[i+(wavesize/2)+counter*wavesize].vx = 5;
+			dotArray[i+(wavesize/2)+counter*wavesize].vy = 0;
+			dotArray[i+(wavesize/2)+counter*wavesize].isLive = true;
+		}
+		timer = 0;
+		counter++;
+		if(counter>(dotTotal/wavesize-1)) counter = 0;
+	}
+
+	function drawDot(thisDot)
+	{
+		if(thisDot.isLive == true)
+		{
+			ctx.fillStyle = "rgb(0,255,0)";
+			ctx.beginPath();
+   			ctx.arc(thisDot.x, thisDot.y, 3, 0, 2 * Math.PI, false);
+			ctx.fill();
+
+		}
+	}
+
+	function updateDot(thisDot,number)
+	{
+	
+		attract(thisDot);
+		thisDot.x += thisDot.vx;
+		thisDot.y += thisDot.vy;
+
+		//keep within the bounds
+		//if((thisDot.x > 1200) || (thisDot.x < 0) || (thisDot.y > 480) || (thisDot.y < 0)) thisDot.isLive = false;
+	}
+
+	function attract(atom)
+	{
+		dist = Math.sqrt((atom.x-sunx)*(atom.x-sunx)+(atom.y-suny)*(atom.y-suny));
+		atom.vx += (sunx-atom.x)/dist*force_const/(dist*dist);
+		atom.vy += (suny-atom.y)/dist*force_const/(dist*dist);
+
+	}
+
+	function Dot(newX, newY, newVX, newVY) 
+	{
+		this.x = newX;
+		this.y = newY;
+		this.vy = newVX;
+		this.vy = newVY;
+		this.isLive = false;
+	}
+
+
+	</script>
+
+<style type="text/css">
+canvas { border: 1px solid black; background: black; }
+</style>
+
+</head>
+<body onload="init();">
+	<canvas id="myCanvas" width="800" height="480"></canvas>
+	<p id="output"></p>
+</body>
+</html>

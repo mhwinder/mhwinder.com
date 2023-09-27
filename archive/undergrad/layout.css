@@ -1,0 +1,63 @@
+body
+  {background-color:  black;
+   background-image:  url(texture.bmp);
+   background-repeat: repeat-y}
+
+H1
+  {text-align:        center}
+
+H2
+  {text-align:        left;
+   clear:             both}
+
+H3
+  {position:          relative;
+   top:               -10px;
+   text-align:        center}
+
+.header
+  {color:             #D8D8D8 ;
+   border-style:      solid;
+   border-color:      gray;
+   font-weight:       normal;
+   background-color:  black;
+   width:             95%;
+   height:            100px;
+   overflow:          visible;
+   font-family:       sans-serif}
+
+.main
+  {color:             #D8D8D8;
+   font-weight:       normal;
+   position:          relative;
+   width:             65%;
+   float:             left;
+   overflow:          inherit;
+   font-family:       sans-serif}
+
+.side
+  {color:             #303030;
+   font-weight:       normal;
+   overflow:          visible;
+   float:             left;
+   margin-left:       5px;
+   margin-right:      35px;
+   margin-top:        10px;
+   width:             90px;
+   font-family:       serif}
+   
+.footer
+  {font-size:         7pt;
+   float:             none;
+   text-align:        center}
+
+A:link,A:visited,A:active
+  {text-decoration:   none;
+   font-weight:       bolder;
+   line-height:       90%;
+   color:             darkred}
+
+A:hover
+  {text-decoration:   underline overline;
+   line-height:       90%; 
+   color:             red}

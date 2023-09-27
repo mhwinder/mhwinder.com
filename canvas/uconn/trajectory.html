@@ -1,0 +1,194 @@
+<html>
+<head>
+<title>Trajectory Plot</title>
+	<script type="text/javascript">
+
+	var ctx;
+	var canvas;
+
+	var steps = 200000;
+	var interval = 10;
+	var scale = parseFloat("100");;
+	var data = [];
+	var data2 = [];
+
+	var xi = parseFloat("-15");
+	var yi = parseFloat("-0.5");
+	var vxi = parseFloat("1.6e-5");
+	var vyi = 0;
+	var vx;
+	var vy;
+
+	//Use AU in G. Numbers are large so I premultiply these just in case.
+	var ms = parseFloat("1.98892e33");
+	var G = parseFloat("1.9931e-44");
+	var GM = parseFloat("3.96425039e-11");
+
+	function init()
+	{
+		canvas = document.getElementById('myCanvas');
+		if (canvas.getContext)
+		{
+			ctx = canvas.getContext('2d');
+		}
+
+		//populate forms with defaults
+		document.getElementById("fxi").value = xi;
+		document.getElementById("fyi").value = yi;
+		document.getElementById("fvxi").value = vxi;
+		document.getElementById("finterval").value = interval;
+		document.getElementById("fsteps").value = steps;
+		document.getElementById("fscale").value = scale;
+
+		compute();
+	}
+
+	function plot()
+	{
+		ctx.globalCompositeOperation = 'destination-over';
+		ctx.clearRect(0,0,800,480); // clear canvas
+		
+		//Draw dot for sun before scale so size doesnt change
+		ctx.fillStyle = "rgb(255,255,0)";
+		ctx.beginPath();
+   		ctx.arc(400, 240, 5, 0, 2 * Math.PI, false);
+		ctx.fill()
+
+		ctx.save();
+
+		//transform canvas to plot space
+   		ctx.translate(canvas.width / 2, canvas.height / 2);
+		ctx.scale(scale, -scale);
+		
+
+		//Draw 1 AU circle
+		ctx.beginPath();
+   		ctx.arc(0, 0, 1, 0, 2 * Math.PI, false);
+		ctx.lineWidth   = 1/(2*scale);
+		ctx.stroke();
+
+		//draw loop
+		ctx.beginPath();
+		ctx.moveTo(data[0].x,data[0].y)
+		var i;
+		for(i=1;i<(steps);i+=steps/1000) 
+		{
+			ctx.lineTo(data[i].x,data[i].y);
+		}
+
+		ctx.strokeStyle = "#000";
+		ctx.lineWidth   = 1/scale;
+		ctx.stroke();
+
+		//second draw loop
+		ctx.beginPath();
+		ctx.moveTo(data2[0].x,data2[0].y)
+		var i;
+		for(i=1;i<(3600);i+=10) 
+		{
+			ctx.lineTo(data2[i].x,data2[i].y);
+		}
+
+		ctx.strokeStyle = "#f00";
+		ctx.lineWidth   = 1/scale;
+		ctx.stroke();
+
+		ctx.restore();
+	}
+
+	function compute()
+	{
+		collect_parameters();
+
+		var coefficients = GM*interval;
+
+		data[0] = new Object;
+		data[0].x = xi;
+		data[0].y = yi;
+
+		vx = vxi;
+		vy = vyi;
+
+		var i;
+		for(i=0;i<(steps-1);i++)
+		{
+			//This is the equation. First I calculate the absolute mag of r and call it dist.
+			//Then I plug it into the eq dv = G*M*dt/(r^2) where dv is the change in v over the interval dt.
+			//There is an additional -x/r term or -y/r term which is the cos or sin for the component.
+			dist = Math.sqrt(data[i].x*data[i].x+data[i].y*data[i].y);
+			vx += -(data[i].x)*coefficients/(dist*dist*dist);
+			vy += -(data[i].y)*coefficients/(dist*dist*dist);
+			data[i+1] = new Object;
+			data[i+1].x = data[i].x + vx*interval;
+			data[i+1].y = data[i].y + vy*interval;
+
+			//Set data to sine wave to test plotting function
+			//data[i].x = i/30;
+			//data[i].y = 100*Math.sin(i/1000);
+		}
+
+
+		var ecc = Math.sqrt(1+(vxi*vxi*vxi*vxi)*(yi*yi)/(GM*GM));
+		var coefficients2 = (vxi*vxi)*(yi*yi)/(GM);
+		var scatang = 2*(Math.atan(-yi*vxi*vxi/GM)+Math.PI/2);
+
+		for(i=0;i<(3600);i++)
+		{
+			data2[i] = new Object;
+			data2[i].th = i/10*2*Math.PI/360;
+			data2[i].r = coefficients2/(1+ecc*Math.cos(data2[i].th))
+			data2[i].x = data2[i].r*Math.sin(data2[i].th+(2*Math.PI-scatang)/2);
+			data2[i].y = -data2[i].r*Math.cos(data2[i].th+(2*Math.PI-scatang)/2);
+		}
+		//alert(data2[0].r+" "+data2[0].th+" | "+data2[0].x+" "+data2[0].y+" | "+ecc+" "+(2*Math.PI-scatang));
+
+
+		//Graph the data
+		plot();
+	}
+
+	function collect_parameters()
+	{
+		xi = parseFloat(document.getElementById("fxi").value);
+		yi = parseFloat(document.getElementById("fyi").value);
+		vxi = parseFloat(document.getElementById("fvxi").value);
+		interval = parseFloat(document.getElementById("finterval").value);
+		steps = parseFloat(document.getElementById("fsteps").value);
+		scale = parseFloat(document.getElementById("fscale").value);
+	}
+
+
+	</script>
+
+<style type="text/css">
+canvas { border: 1px solid black; }
+</style>
+
+</head>
+<body onload="init();">
+	<canvas id="myCanvas" width="800" height="480"></canvas>
+	<p><button id="myButton" onclick="compute();">Compute</button></p>
+
+		xi (AU): <textarea cols="20" rows="1"  id="fxi" name="fxi" ></textarea><br />
+		yi (AU): <textarea cols="20" rows="1" id="fyi" name="fyi"></textarea><br />
+		vxi (AU/s): <textarea cols="20" rows="1" id="fvxi" name="fvxi"></textarea><br />
+		interval (sec): <textarea cols="20" rows="1" id="finterval" name="finterval"></textarea><br />
+		steps (int): <textarea cols="20" rows="1" id="fsteps" name="fsteps"></textarea><br />
+		scale (px/AU): <textarea cols="20" rows="1" id="fscale" name="fscale"></textarea><br />
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

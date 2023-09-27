@@ -1,0 +1,34 @@
+
+<htlm><head>
+<title>Predict the Future!</title>
+<link rel="StyleSheet" type="text/css" href="layout.css">
+<script language="javascript" src="fortune.js"></script>
+<script language="javascript" src="textpop.js"></script>
+<script language="javascript" src="simpleswap.js"></script>
+</head>
+
+<body>
+
+<div class="side">
+<p><a href="index.html" onMouseOver="showtext('index')" onMouseOut="hidetext('index')">Return to Index</a>:<br> <span id="index" style="display:none">I decided to put stuff in the side here. Turns out if I leave it blank the sites formatting falls to pieces.</span></p>
+</div>
+
+<div class="main">
+<br>
+<h1>Predict the Future!</h1>
+<br>
+
+<div style="text-align: center;">
+<img src="button1.jpg" oversrc="button1r.jpg" align=middle onClick="predict_future()">
+</div> 
+<br>
+<br>
+<br>
+<h3 id="futuretext" style="float:none"><span style="color:darkred;font-weight:bolder">There is no Future until you press Button1!</span></h3>
+<p id="count" style="color:#000000">0</p>
+
+<!--#include file="footer.html" -->
+</div>
+</body>
+
+</html>
