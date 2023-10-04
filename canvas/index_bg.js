@@ -8,23 +8,28 @@ var timer = 0;
 var tile_size = 80;
 
 function init() {
+  resize_canvas();
+  scroll_canvas();
+  //window.onresize = resize_canvas;
+  //window.onscroll = scroll_canvas;
   window.requestAnimationFrame(draw);
 }
 
+function resize_canvas() {
+  x_canv = document.documentElement.clientWidth;
+  y_canv = document.documentElement.clientHeight;
+}
+
+function scroll_canvas() {
+  //c.top = window.scrollY;
+}
+
 function draw() {
-  //var ctx = document.getElementById('myCanvas').getContext('2d');
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
 
-  x_canv = window.innerWidth;
-  y_canv = window.innerHeight;
-  //x_canv = document.documentElement.clientWidth - 2;
-  //y_canv = document.documentElement.clientHeight - 2;
-  //x_canv = document.body.clientWidth;
-  //y_canv = document.body.clientHeight;
-
-  c.style.top = window.scrollY;
-
+  //resize_canvas()
+  //c.top = window.scrollY;
   c.width = x_canv;
 	c.height = y_canv;
 
